@@ -1,0 +1,1291 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+     <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Страница не найдена | ИСУР</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1a56db;
+            --primary-dark: #1e429f;
+            --primary-light: #3f83f8;
+            --accent: #c80000;
+            --accent-light: #d33434;
+            --dark: #111827;
+            --light: #f9fafb;
+            --gray-light: #f3f4f6;
+            --gray: #6b7280;
+            --glass-bg: rgba(26, 86, 219, 0.85);
+            --glass-border: rgba(255, 255, 255, 0.18);
+            --border-radius: 16px;
+            --card-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.08), 0 10px 20px -10px rgba(0, 0, 0, 0.04);
+            --elevated-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(26, 86, 219, 0.03) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(200, 0, 0, 0.03) 0%, transparent 20%);
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* ===== МИНИМАЛИСТИЧНАЯ ШАПКА ===== */
+        header {
+            background: linear-gradient(135deg, var(--glass-bg) 0%, rgba(26, 86, 219, 0.95) 100%);
+            backdrop-filter: blur(20px);
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            width: 100%;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-text {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: white;
+            letter-spacing: -0.5px;
+        }
+
+        nav {
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            padding: 0.5rem 0;
+            position: relative;
+            transition: var(--transition);
+            white-space: nowrap;
+        }
+
+        nav a:hover {
+            color: white;
+            transform: translateY(-1px);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            transition: var(--transition);
+        }
+
+        .mobile-menu-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* ===== СОВРЕМЕННЫЙ ОСНОВНОЙ КОНТЕНТ ===== */
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 4rem 0;
+            position: relative;
+        }
+
+        /* ===== ГЛАВНАЯ СЕКЦИЯ С 3D ЭФФЕКТОМ ===== */
+        .error-hero {
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 3rem;
+            position: relative;
+        }
+
+        .error-number-container {
+            position: relative;
+            margin-bottom: 3rem;
+            perspective: 1000px;
+        }
+
+        .error-number {
+            font-size: 18rem;
+            font-weight: 900;
+            line-height: 1;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+            display: inline-block;
+            transform-style: preserve-3d;
+            animation: float3d 6s ease-in-out infinite;
+            text-shadow: 
+                0 10px 30px rgba(26, 86, 219, 0.2),
+                0 5px 15px rgba(200, 0, 0, 0.1);
+        }
+
+        @keyframes float3d {
+            0%, 100% { 
+                transform: translateY(0) rotateX(0deg) rotateY(0deg); 
+            }
+            25% { 
+                transform: translateY(-20px) rotateX(5deg) rotateY(5deg); 
+            }
+            75% { 
+                transform: translateY(-10px) rotateX(-5deg) rotateY(-5deg); 
+            }
+        }
+
+        .error-number::before {
+            content: '404';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            background: linear-gradient(135deg, 
+                rgba(255, 255, 255, 0.8), 
+                rgba(255, 255, 255, 0.3));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            z-index: -1;
+            filter: blur(3px);
+        }
+
+        .error-title {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            color: var(--dark);
+            position: relative;
+            display: inline-block;
+        }
+
+        .error-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            border-radius: 2px;
+            animation: expandWidth 1s ease-out;
+        }
+
+        @keyframes expandWidth {
+            from { width: 0; }
+            to { width: 150px; }
+        }
+
+        .error-description {
+            font-size: 1.25rem;
+            color: var(--gray);
+            margin-bottom: 3rem;
+            line-height: 1.7;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* ===== АНИМИРОВАННЫЙ РОБОТ МИМИ ===== */
+        .robot-container {
+            position: relative;
+            margin: 3rem 0;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .robot-mimi {
+            height: 200px;
+            width: auto;
+            filter: drop-shadow(0 20px 40px rgba(26, 86, 219, 0.3));
+            animation: 
+                robotFloat 4s ease-in-out infinite,
+                robotGlow 3s ease-in-out infinite alternate;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .robot-mimi:hover {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        @keyframes robotFloat {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(3deg); }
+        }
+
+        @keyframes robotGlow {
+            0% { filter: drop-shadow(0 20px 40px rgba(26, 86, 219, 0.3)); }
+            100% { filter: drop-shadow(0 20px 50px rgba(200, 0, 0, 0.4)); }
+        }
+
+        .robot-speech {
+            position: absolute;
+            top: -60px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            padding: 1rem 1.5rem;
+            border-radius: 20px;
+            box-shadow: var(--elevated-shadow);
+            opacity: 0;
+            animation: speechBubble 8s ease-in-out infinite;
+            border: 2px solid var(--primary-light);
+            font-weight: 500;
+            color: var(--primary);
+            white-space: nowrap;
+        }
+
+        @keyframes speechBubble {
+            0%, 100% { opacity: 0; transform: translateX(-50%) translateY(10px); }
+            10%, 30% { opacity: 1; transform: translateX(-50%) translateY(0); }
+        }
+
+        /* ===== СОВРЕМЕННЫЕ КНОПКИ ===== */
+        .action-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 3rem 0;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: white;
+            padding: 1.25rem 2.5rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(26, 86, 219, 0.3);
+            border: none;
+            cursor: pointer;
+            min-width: 180px;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(255, 255, 255, 0.3), 
+                transparent);
+            transition: left 0.7s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(26, 86, 219, 0.4);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary-light);
+            box-shadow: 0 5px 20px rgba(26, 86, 219, 0.1);
+        }
+
+        .btn-outline:hover {
+            background: linear-gradient(135deg, 
+                rgba(26, 86, 219, 0.1), 
+                rgba(26, 86, 219, 0.05));
+            color: var(--primary-dark);
+            border-color: var(--primary);
+        }
+
+        .btn-accent {
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            box-shadow: 0 10px 30px rgba(200, 0, 0, 0.3);
+        }
+
+        .btn-accent:hover {
+            box-shadow: 0 20px 40px rgba(200, 0, 0, 0.4);
+        }
+
+        /* ===== МОДЕРНИСТСКИЕ КАРТОЧКИ ===== */
+        .quick-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 4rem 0;
+            width: 100%;
+        }
+
+        .link-card {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 2.5rem;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .link-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.5s ease;
+        }
+
+        .link-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .link-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--elevated-shadow);
+            border-color: rgba(26, 86, 219, 0.1);
+        }
+
+        .card-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, 
+                rgba(26, 86, 219, 0.1), 
+                rgba(26, 86, 219, 0.05));
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            color: var(--primary);
+            font-size: 2rem;
+            transition: var(--transition);
+        }
+
+        .link-card:hover .card-icon {
+            transform: scale(1.1) rotate(10deg);
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: white;
+        }
+
+        .link-card h3 {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .link-card p {
+            color: var(--gray);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .card-btn {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary-light);
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .card-btn:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(26, 86, 219, 0.3);
+        }
+
+        /* ===== НЕЙРОННАЯ СЕТЬ АНИМАЦИЯ ===== */
+        .neural-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: -1;
+            opacity: 0.1;
+            pointer-events: none;
+        }
+
+        .neural-node {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: var(--primary);
+            border-radius: 50%;
+            animation: nodePulse 2s ease-in-out infinite;
+        }
+
+        .neural-connection {
+            position: absolute;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), transparent);
+            transform-origin: left center;
+            animation: connectionFlow 3s linear infinite;
+        }
+
+        @keyframes nodePulse {
+            0%, 100% { transform: scale(1); opacity: 0.3; }
+            50% { transform: scale(1.5); opacity: 0.8; }
+        }
+
+        @keyframes connectionFlow {
+            0% { transform: scaleX(0); opacity: 0; }
+            50% { opacity: 1; }
+            100% { transform: scaleX(1); opacity: 0; }
+        }
+
+        /* ===== ПАРТИКЛИ ===== */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--primary);
+            border-radius: 50%;
+            animation: particleFloat 20s linear infinite;
+        }
+
+        @keyframes particleFloat {
+            0% { 
+                transform: translateY(100vh) rotate(0deg); 
+                opacity: 0; 
+            }
+            10% { opacity: 0.5; }
+            90% { opacity: 0.5; }
+            100% { 
+                transform: translateY(-100px) rotate(360deg); 
+                opacity: 0; 
+            }
+        }
+
+        /* ===== СОВРЕМЕННЫЙ ПОИСК ===== */
+        .search-container {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            box-shadow: var(--elevated-shadow);
+            margin: 3rem auto;
+            width: 100%;
+            max-width: 600px;
+            border: 2px solid rgba(226, 232, 240, 0.6);
+        }
+
+        .search-header {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .search-header h3 {
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .search-input-group {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 1rem 1.5rem;
+            border: 2px solid var(--gray-light);
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: var(--transition);
+            background: white;
+            color: var(--dark);
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(26, 86, 219, 0.1);
+            transform: translateY(-1px);
+        }
+
+        /* ===== УЛУЧШЕННЫЙ ФУТЕР ===== */
+        footer {
+            background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+            color: white;
+            padding: 3rem 0 1rem;
+            margin-top: auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--primary-light), transparent);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section {
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+            font-size: 1.25rem;
+            position: relative;
+            padding-bottom: 0.75rem;
+            color: white;
+        }
+
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: var(--accent);
+            border-radius: 3px;
+        }
+
+        .footer-section p {
+            margin-bottom: 0.75rem;
+            font-size: 0.9375rem;
+            opacity: 0.8;
+            transition: var(--transition);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: var(--transition);
+            font-size: 1.25rem;
+        }
+
+        .social-links a:hover {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            transform: translateY(-5px) rotate(10deg);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .footer-bottom {
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            font-size: 0.875rem;
+            opacity: 0.7;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* ===== АДАПТИВНОСТЬ ===== */
+        @media (max-width: 1024px) {
+            .container {
+                max-width: 100%;
+                padding: 0 1.5rem;
+            }
+            
+            .error-number {
+                font-size: 14rem;
+            }
+            
+            .error-title {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: row;
+                justify-content: space-between;
+            }
+            
+            nav {
+                display: none;
+                position: fixed;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background: var(--primary-dark);
+                flex-direction: column;
+                padding: 1rem;
+                box-shadow: var(--elevated-shadow);
+                gap: 0;
+                z-index: 999;
+                border-radius: 0 0 var(--border-radius) var(--border-radius);
+            }
+            
+            nav.active {
+                display: flex;
+                animation: slideDown 0.3s ease;
+            }
+            
+            nav a {
+                padding: 1rem;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+            
+            .mobile-menu-btn {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            
+            .error-number {
+                font-size: 10rem;
+            }
+            
+            .error-title {
+                font-size: 2rem;
+            }
+            
+            .error-description {
+                font-size: 1.125rem;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+            
+            .quick-links {
+                grid-template-columns: 1fr;
+            }
+            
+            .search-input-group {
+                flex-direction: column;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .footer-section h3::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            
+            .social-links {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 1rem;
+            }
+            
+            .error-number {
+                font-size: 8rem;
+            }
+            
+            .error-title {
+                font-size: 1.75rem;
+            }
+            
+            .error-description {
+                font-size: 1rem;
+            }
+            
+            .robot-container {
+                height: 150px;
+            }
+            
+            .robot-mimi {
+                height: 150px;
+            }
+            
+            .link-card {
+                padding: 1.5rem;
+            }
+        }
+
+        /* ===== АНИМАЦИИ ===== */
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        /* ===== ИНФОРМАЦИОННАЯ ПАНЕЛЬ ===== */
+        .info-panel {
+            background: linear-gradient(135deg, 
+                rgba(26, 86, 219, 0.05), 
+                rgba(200, 0, 0, 0.05));
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            margin: 2rem 0;
+            border-left: 4px solid var(--primary);
+            box-shadow: var(--card-shadow);
+        }
+
+        .info-panel h4 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .info-panel p {
+            color: var(--gray);
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <!-- Улучшенная шапка -->
+    <header>
+        <div class="container header-content">
+            <div class="logo-container">
+                <div class="logo">
+                    <img src="images/logo.svg" alt="ИСУР Логотип">
+                </div>
+                <div class="logo-text"></div>
+            </div>
+            <nav id="mainNav">
+                 <a href="index.html"class="active">Главная</a>
+                <a href="about.html">О нас</a>
+                <a href="digital_assistant.html">Цифровой помощник</a>
+                <a href="analytics.html">Аналитика</a>
+                <a href="contact.html">Контакты</a>
+            </nav>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Анимированный фон -->
+    <div class="neural-background" id="neuralNetwork"></div>
+    <div class="particles" id="particles"></div>
+
+    <!-- Основной контент -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Центральная секция с ошибкой -->
+            <section class="error-hero">
+                <div class="error-number-container">
+                    <div class="error-number" id="errorNumber">404</div>
+                </div>
+                
+                <h1 class="error-title">Страница не найдена</h1>
+                
+                <p class="error-description">
+                    Кажется, мы не можем найти то, что вы ищете. Возможно, страница была перемещена, 
+                    удалена, или вы ввели неправильный URL. Но не волнуйтесь - у нас есть много других 
+                    интересных возможностей для исследования!
+                </p>
+
+                <!-- Анимированный робот МИМИ -->
+                <div class="robot-container">
+                    <div class="robot-speech">Помогу найти нужную информацию!</div>
+                             <model-viewer
+    src="images/3д-модель.glb" 
+    alt="3D модель" 
+    auto-rotate 
+    camera-controls 
+    style="width: 90%; height: 290px;">
+</model-viewer>      
+                            </div>
+                <!-- Основные кнопки действий -->
+                <div class="action-buttons">
+                    <a href="index.html" class="btn">
+                        <i class="fas fa-home"></i>
+                        <span>Вернуться на главную</span>
+                    </a>
+                    <a href="digital_assistant.html" class="btn btn-outline">
+                        <i class="fas fa-robot"></i>
+                        <span>Спросить у МИМИ</span>
+                    </a>
+                    <button onclick="goBack()" class="btn btn-accent">
+                        <i class="fas fa-arrow-left"></i>
+                        <span>Вернуться назад</span>
+                    </button>
+                </div>
+            </section>
+
+            <!-- Информационная панель -->
+            <div class="info-panel fade-in">
+                <h4>
+                    <i class="fas fa-lightbulb"></i>
+                    Полезный совет от системы ИСУР
+                </h4>
+                <p>
+                    Если вы не можете найти нужную информацию, попробуйте использовать наш интеллектуальный помощник МИМИ. 
+                    Он может помочь с поиском, ответить на вопросы о городской инфраструктуре или направить вас к нужному разделу.
+                </p>
+            </div>
+
+            <!-- Быстрые ссылки -->
+            <section class="quick-links fade-in">
+                <article class="link-card">
+                    <div class="card-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Аналитика данных</h3>
+                    <p>Исследуйте интерактивные карты Москвы, анализируйте инфраструктуру и получайте данные в реальном времени</p>
+                    <a href="analytics.html" class="card-btn">
+                        <i class="fas fa-external-link-alt"></i>
+                        Исследовать
+                    </a>
+                </article>
+                
+                <article class="link-card">
+                    <div class="card-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>Искусственный интеллект</h3>
+                    <p>Общайтесь с нашим цифровым помощником МИМИ для получения персональных рекомендаций и аналитики</p>
+                    <a href="digital_assistant.html" class="card-btn">
+                        <i class="fas fa-comments"></i>
+                        Начать диалог
+                    </a>
+                </article>
+                
+                <article class="link-card">
+                    <div class="card-icon">
+                        <i class="fas fa-city"></i>
+                    </div>
+                    <h3>Городские решения</h3>
+                    <p>Узнайте, как наша система помогает в управлении городской инфраструктурой и улучшении качества жизни</p>
+                    <a href="about.html" class="card-btn">
+                        <i class="fas fa-info-circle"></i>
+                        Узнать больше
+                    </a>
+                </article>
+            </section>
+
+            <!-- Поиск по сайту -->
+            <div class="search-container fade-in">
+                <div class="search-header">
+                    <h3>
+                        <i class="fas fa-search"></i>
+                        Поиск по сайту
+                    </h3>
+                    <p>Найдите нужную информацию с помощью нашего умного поиска</p>
+                </div>
+                <div class="search-input-group">
+                    <input type="text" class="search-input" id="searchInput" placeholder="Введите запрос для поиска...">
+                    <button class="btn" onclick="performSearch()">
+                        <i class="fas fa-search"></i>
+                        Найти
+                    </button>
+                </div>
+                <div id="searchResults" style="display: none; margin-top: 1.5rem;"></div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Улучшенный футер -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Контакты</h3>
+                    <p><i class="fas fa-phone"></i> Телефон: +7 (495) 123-45-67</p>
+                    <p><i class="fas fa-envelope"></i> Email: info@isur.ru</p>
+                    <p><i class="fas fa-clock"></i> Пн-Пт: 9:00 - 18:00</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Адрес</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> г. Москва ул. Павла Корчагина, д. 22</p>
+                    <p><i class="fas fa-subway"></i> Метро: ВДНХ</p>
+                </div>
+                <div class="footer-section">
+              <h3>Социальные сети</h3>
+                    <p>Telegram | VK </p>
+                    <p>Подпишитесь на наши обновления</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
+                        <a href="#" aria-label="ВКонтакте"><i class="fab fa-vk"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 ИСУР. Все права защищены.</p>
+                <p style="font-size: 0.75rem; margin-top: 0.5rem;">Интеллектуальная система управления развитием</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Данные для поиска
+        const searchData = [
+            { title: "Главная страница", description: "Начните с главной страницы системы ИСУР", url: "index.html", icon: "fas fa-home" },
+            { title: "О компании", description: "Узнайте о нашей миссии и команде", url: "about.html", icon: "fas fa-info-circle" },
+            { title: "Цифровой помощник", description: "Общайтесь с роботом МИМИ", url: "digital_assistant.html", icon: "fas fa-robot" },
+            { title: "Аналитика Москвы", description: "Интерактивные карты и данные", url: "analytics.html", icon: "fas fa-chart-line" },
+            { title: "Контакты", description: "Свяжитесь с нашей командой", url: "contact.html", icon: "fas fa-envelope" },
+            { title: "Городская инфраструктура", description: "Анализ развития городов", url: "analytics.html#infrastructure", icon: "fas fa-city" },
+            { title: "Устойчивое развитие", description: "Экологические решения", url: "about.html#values", icon: "fas fa-seedling" },
+            { title: "Технологии ИИ", description: "Наши инновационные решения", url: "digital_assistant.html#ai", icon: "fas fa-brain" }
+        ];
+
+        // Элементы DOM
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mainNav = document.getElementById('mainNav');
+        const searchInput = document.getElementById('searchInput');
+        const searchResults = document.getElementById('searchResults');
+        const errorNumber = document.getElementById('errorNumber');
+        const robotMimi = document.getElementById('robotMimi');
+        const neuralNetwork = document.getElementById('neuralNetwork');
+        const particles = document.getElementById('particles');
+
+        // Мобильное меню
+        mobileMenuBtn.addEventListener('click', () => {
+            mainNav.classList.toggle('active');
+            mobileMenuBtn.innerHTML = mainNav.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+
+        // Адаптивное меню
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768) {
+                mainNav.classList.remove('active');
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            }
+        });
+
+        // Функция "Вернуться назад"
+        function goBack() {
+            if (document.referrer && !document.referrer.includes(window.location.hostname)) {
+                window.history.back();
+            } else {
+                window.location.href = 'index.html';
+            }
+        }
+
+        // Функция поиска
+        function performSearch() {
+            const query = searchInput.value.trim().toLowerCase();
+            
+            if (query.length < 2) {
+                showSearchResults('Введите хотя бы 2 символа для поиска', false);
+                return;
+            }
+            
+            // Фильтрация результатов
+            const results = searchData.filter(item => 
+                item.title.toLowerCase().includes(query) || 
+                item.description.toLowerCase().includes(query)
+            );
+            
+            if (results.length === 0) {
+                showSearchResults('По вашему запросу ничего не найдено. Попробуйте другой запрос.', false);
+            } else {
+                let html = '<div style="background: var(--gray-light); padding: 1rem; border-radius: 10px;">';
+                html += '<h4 style="margin-bottom: 1rem; color: var(--primary);">Результаты поиска:</h4>';
+                html += '<div style="display: flex; flex-direction: column; gap: 0.75rem;">';
+                
+                results.forEach(item => {
+                    html += `
+                        <a href="${item.url}" style="display: flex; align-items: center; gap: 1rem; padding: 0.75rem; background: white; border-radius: 8px; text-decoration: none; color: var(--dark); transition: var(--transition);">
+                            <i class="${item.icon}" style="color: var(--primary); font-size: 1.25rem;"></i>
+                            <div>
+                                <div style="font-weight: 600; color: var(--primary);">${item.title}</div>
+                                <div style="font-size: 0.875rem; color: var(--gray); margin-top: 0.25rem;">${item.description}</div>
+                            </div>
+                        </a>
+                    `;
+                });
+                
+                html += '</div></div>';
+                showSearchResults(html, true);
+            }
+        }
+
+        // Показать результаты поиска
+        function showSearchResults(content, isResults) {
+            searchResults.innerHTML = content;
+            searchResults.style.display = 'block';
+            
+            if (isResults) {
+                searchResults.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('mouseenter', () => {
+                        link.style.transform = 'translateX(5px)';
+                        link.style.boxShadow = 'var(--card-shadow)';
+                    });
+                    link.addEventListener('mouseleave', () => {
+                        link.style.transform = 'translateX(0)';
+                        link.style.boxShadow = 'none';
+                    });
+                });
+            }
+        }
+
+        // Создание нейронной сети
+        function createNeuralNetwork() {
+            const nodes = [];
+            const connections = [];
+            
+            // Создание узлов
+            for (let i = 0; i < 15; i++) {
+                const node = document.createElement('div');
+                node.className = 'neural-node';
+                node.style.left = `${Math.random() * 100}%`;
+                node.style.top = `${Math.random() * 100}%`;
+                node.style.animationDelay = `${Math.random() * 2}s`;
+                node.style.backgroundColor = Math.random() > 0.5 ? 'var(--primary)' : 'var(--accent)';
+                neuralNetwork.appendChild(node);
+                nodes.push(node);
+            }
+            
+            // Создание соединений
+            for (let i = 0; i < 20; i++) {
+                const connection = document.createElement('div');
+                connection.className = 'neural-connection';
+                
+                const startNode = nodes[Math.floor(Math.random() * nodes.length)];
+                const endNode = nodes[Math.floor(Math.random() * nodes.length)];
+                
+                const rect1 = startNode.getBoundingClientRect();
+                const rect2 = endNode.getBoundingClientRect();
+                
+                const x1 = rect1.left + rect1.width / 2;
+                const y1 = rect1.top + rect1.height / 2;
+                const x2 = rect2.left + rect2.width / 2;
+                const y2 = rect2.top + rect2.height / 2;
+                
+                const length = Math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2);
+                const angle = Math.atan2(y2 - y1, x2 - x1) * 180 / Math.PI;
+                
+                connection.style.width = `${length}px`;
+                connection.style.left = `${x1}px`;
+                connection.style.top = `${y1}px`;
+                connection.style.transform = `rotate(${angle}deg)`;
+                connection.style.animationDelay = `${Math.random() * 3}s`;
+                
+                neuralNetwork.appendChild(connection);
+                connections.push(connection);
+            }
+            
+            // Обновление позиций при ресайзе
+            window.addEventListener('resize', () => {
+                connections.forEach(connection => connection.remove());
+                createNeuralNetwork();
+            });
+        }
+
+        // Создание частиц
+        function createParticles() {
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.animationDelay = `${Math.random() * 20}s`;
+                particle.style.animationDuration = `${15 + Math.random() * 10}s`;
+                particle.style.backgroundColor = Math.random() > 0.7 ? 'var(--accent)' : 'var(--primary)';
+                particle.style.opacity = `${0.2 + Math.random() * 0.3}`;
+                particles.appendChild(particle);
+            }
+        }
+
+        // Анимация робота при клике
+        robotMimi.addEventListener('click', () => {
+            robotMimi.style.animation = 'none';
+            setTimeout(() => {
+                robotMimi.style.animation = 'robotFloat 4s ease-in-out infinite, robotGlow 3s ease-in-out infinite alternate';
+            }, 10);
+            
+            // Показать сообщение
+            const speech = document.querySelector('.robot-speech');
+            speech.textContent = ['Помогу найти нужную информацию!', 'Давайте исследовать вместе!', 'Готов помочь!'][Math.floor(Math.random() * 3)];
+            speech.style.animation = 'none';
+            setTimeout(() => {
+                speech.style.animation = 'speechBubble 8s ease-in-out infinite';
+            }, 10);
+        });
+
+        // Анимация числа 404 при скролле
+        window.addEventListener('scroll', () => {
+            const scrollPosition = window.scrollY;
+            const rotation = scrollPosition * 0.01;
+            errorNumber.style.transform = `translateY(${scrollPosition * 0.05}px) rotateX(${rotation}deg) rotateY(${rotation}deg)`;
+        });
+
+        // Анимация при загрузке
+        document.addEventListener('DOMContentLoaded', () => {
+            // Создание анимированного фона
+            createNeuralNetwork();
+            createParticles();
+            
+            // Анимация числа 404
+            setTimeout(() => {
+                errorNumber.style.transition = 'transform 0.5s ease';
+                errorNumber.style.transform = 'scale(1.1) rotateX(10deg) rotateY(10deg)';
+                
+                setTimeout(() => {
+                    errorNumber.style.transform = 'scale(1) rotateX(0) rotateY(0)';
+                }, 500);
+            }, 1000);
+            
+            // Анимация карточек
+            const cards = document.querySelectorAll('.fade-in');
+            cards.forEach((card, index) => {
+                card.style.animationDelay = `${index * 0.2}s`;
+            });
+            
+            // Фокус на поле поиска
+            searchInput.focus();
+            
+            // Добавление обработчика Enter для поиска
+            searchInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    performSearch();
+                }
+            });
+        });
+
+        // Анимация карточек при наведении
+        document.querySelectorAll('.link-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                const icon = card.querySelector('.card-icon');
+                icon.style.transform = 'scale(1.15) rotate(15deg)';
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                const icon = card.querySelector('.card-icon');
+                icon.style.transform = 'scale(1) rotate(0)';
+            });
+        });
+    </script>
+</body>
+</html>
